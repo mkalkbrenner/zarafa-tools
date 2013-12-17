@@ -118,8 +118,9 @@ class Disclaimer(IMapiSpoolerPlugin):
         if props[0].ulPropTag == PR_USER_ENTRYID:
             currentuser = session.OpenEntry(props[0].Value, None, 0)
 
-            userprops = currentuser.GetProps([PR_EC_COMPANY_NAME_W], 0)
-            if userprops[0].ulPropTag == PR_EC_COMPANY_NAME_W and len(userprops[0].Value) > 0:
+            # PR_EC_COMPANY_NAME_W does not work, use PR_COMPANY_NAME_W instead
+            userprops = currentuser.GetProps([PR_COMPANY_NAME_W], 0)
+            if userprops[0].ulPropTag == PR_COMPANY_NAME_W and len(userprops[0].Value) > 0:
                 company = userprops[0].Value.encode("utf-8")
                 self.logger.logDebug("*--- Company name is '%s'" % (company) )
 
