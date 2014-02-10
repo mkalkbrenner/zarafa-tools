@@ -114,11 +114,6 @@ class DisclaimerByDomain(IMapiSpoolerPlugin):
             return ''
 
     def PreSending(self, session, addrbook, store, folder, message):
-
-        # externes Programm aufrufen und sender_email_address übergeben
-        # Exitcode auswerten
-        # Signatur einlesen über STDIN
-
         sender_email_address_property = message.GetProps([PR_SENDER_EMAIL_ADDRESS_W], 0)
         sender_email_address = sender_email_address_property[0].Value.encode("utf-8")
         bodytag = self.bestBody(message)
