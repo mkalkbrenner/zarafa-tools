@@ -108,7 +108,7 @@ class DisclaimerByDomain(IMapiSpoolerPlugin):
         stdout, stderr = process.communicate()
 
         if int(process.returncode) == 0:
-            return stdout.encode('utf-8')
+            return stdout
         else:
             self.logger.logError("*--- Error in PHP: '%s'" % (stdout) ) # <== PHP Errors werden in stdout ausgegeben
             return ''
